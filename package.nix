@@ -1,4 +1,4 @@
-{ stdenv, lib, cmake, xorg, libGL, build_viewer ? false }:
+{ stdenv, lib, cmake, xorg, libGL, darwin, build_viewer ? false }:
 stdenv.mkDerivation {
   name = "materialx";
 
@@ -13,6 +13,7 @@ stdenv.mkDerivation {
 
   nativeBuildInputs = [ cmake ];
   buildInputs = [ xorg.libX11 xorg.libXt libGL ]
+    ++ lib.optionals stdenv.isDarwin (with darwin.apple_sdk_11_0.frameworks; [ Cocoa MetalKit ])
     ++ lib.optionals build_viewer ([
       xorg.libXrandr
       xorg.libXinerama

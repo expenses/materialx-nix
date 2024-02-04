@@ -11,6 +11,8 @@
         packages = {
           default = pkgs.callPackage ./package.nix { };
           viewer = pkgs.callPackage ./package.nix { build_viewer = true; };
+          apple-sdk-11 =
+            pkgs.darwin.apple_sdk_11_0.callPackage ./package.nix { };
         };
       };
       flake = { };
