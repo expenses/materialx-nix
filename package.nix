@@ -12,7 +12,7 @@ stdenv.mkDerivation {
   cmakeFlags = lib.optionals build_viewer ([ "-DMATERIALX_BUILD_VIEWER=true" ]);
 
   nativeBuildInputs = [ cmake ];
-  buildInputs = [ xorg.libX11 xorg.libXt libGL ]
+  buildInputs = [ xorg.libXt libGL ]
     ++ lib.optionals stdenv.isDarwin (with darwin.apple_sdk_11_0.frameworks; [ Cocoa MetalKit ])
     ++ lib.optionals build_viewer ([
       xorg.libXrandr
